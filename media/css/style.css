@@ -487,6 +487,50 @@ footer {
     transition: 0.3s;
 }
 
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #7a9b7a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    background: #6a8b6a;
+    transform: translateY(-3px);
+}
+
+.scroll-to-top.show {
+    display: flex;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         position: fixed;
@@ -546,30 +590,106 @@ footer {
     }
 }
 
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: #7a9b7a;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    z-index: 1000;
+/* Main Animation Classes - Put these in your CSS file */
+.section,
+.experience-item,
+.project-card,
+.reference-card,
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.scroll-to-top:hover {
-    background: #6a8b6a;
-    transform: translateY(-3px);
+.experience-item {
+  transform: translateX(-30px);
+}
+
+.project-card {
+  transform: translateY(30px);
+}
+
+.reference-card {
+  transform: scale(0.9);
+}
+
+/* Animate in state */
+.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* Staggered animation delays */
+.experience-item:nth-child(1) { transition-delay: 0ms; }
+.experience-item:nth-child(2) { transition-delay: 100ms; }
+.experience-item:nth-child(3) { transition-delay: 200ms; }
+
+.project-card:nth-child(1) { transition-delay: 0ms; }
+.project-card:nth-child(2) { transition-delay: 200ms; }
+.project-card:nth-child(3) { transition-delay: 400ms; }
+
+.reference-card:nth-child(1) { transition-delay: 0ms; }
+.reference-card:nth-child(2) { transition-delay: 300ms; }
+.reference-card:nth-child(3) { transition-delay: 600ms; }
+
+/* Page loading states */
+.page-loading {
+  opacity: 0;
+}
+
+.page-loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 }
 
 .scroll-to-top.show {
-    display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Form loading state */
+.submit-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submit-btn.loading::after {
+  content: "...";
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% { content: "Verzenden"; }
+  33% { content: "Verzenden."; }
+  66% { content: "Verzenden.."; }
+  100% { content: "Verzenden..."; }
+}
+
+/* Hover effects */
+.skill-item {
+  background-color: #f8f9fa;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+  background-color: #7a9b7a;
+  color: white;
+}
+
+.contact-item {
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(10px);
 }
