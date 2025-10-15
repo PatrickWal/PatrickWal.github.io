@@ -322,7 +322,7 @@ main {
 .section-header i {
     font-size: 1.5rem;
     color: #7a9b7a;
-    animation: bounce 2s infinite;
+    animation: bounce 2s;
     animation-delay: 1s;
 }
 
@@ -495,7 +495,7 @@ main {
 .project-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    animation: bounce 2s infinite;
+    animation: bounce 2s;
     animation-delay: 0.5s;
 }
 
